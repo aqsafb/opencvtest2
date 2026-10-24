@@ -1,0 +1,7 @@
+cls_data/
+runs/
+frames/
+__pycache__/
+*.pth
+*.pt
+*.mp4
