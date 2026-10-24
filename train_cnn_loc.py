@@ -10,7 +10,7 @@ from torchvision import models
 
 DATASET = r"D:/ROV/buoy.v3i.yolov8"
 SIZE = 224
-EPOCHS = 30
+EPOCHS = 10
 BATCH = 32
 dev = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -43,6 +43,11 @@ def load_items(split):
         box = read_label(os.path.join(DATASET, split, "labels", name + ".txt"))
         items.append((p, box))
     return items
+
+NEG_DIR = "negatives"
+
+def load_negatives():
+    return [(p, None) for p in glob.glob(os.path.join(NEG_DIR, "*.*"))]
 
 
 class BuoyDS(Dataset):
@@ -117,6 +122,12 @@ def iou(a, b):
 
 def main():
     train_items, val_items = load_items("train"), load_items("valid")
+    negs = load_negatives()
+    random.shuffle(negs)
+    k = int(len(negs) * 0.8)
+    train_items += negs[:k]       # 80% negatif untuk training
+    val_items += negs[k:]         # 20% untuk validasi
+    print(f"negatif: {len(negs)} gambar")
     print(f"train: {len(train_items)} gambar, valid: {len(val_items)} gambar, device: {dev}")
 
     tl = DataLoader(BuoyDS(train_items, True), batch_size=BATCH, shuffle=True, num_workers=0)
