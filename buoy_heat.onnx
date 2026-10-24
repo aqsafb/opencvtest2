@@ -1,0 +1,3324 @@
+
+pytorch
+2.14.1+cpu:ª˚
+Œ
+input
+meansubnode_sub"SubJ0
+	namespace#: __main__.Net/sub: aten.sub.TensorJE
+pkg.torch.onnx.class_hierarchy#['__main__.Net', 'aten.sub.Tensor']JÉ
+pkg.torch.onnx.fx_nodei%sub : [num_users=1] = call_function[target=torch.ops.aten.sub.Tensor](args = (%x, %b_mean), kwargs = {})J)
+pkg.torch.onnx.name_scopes['', 'sub']JÄ
+pkg.torch.onnx.stack_tracebFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 132, in forward
+    x = (x - self.mean) / self.std
+Ã
+sub
+stddivnode_div"DivJ0
+	namespace#: __main__.Net/div: aten.div.TensorJE
+pkg.torch.onnx.class_hierarchy#['__main__.Net', 'aten.div.Tensor']JÑ
+pkg.torch.onnx.fx_nodej%div : [num_users=1] = call_function[target=torch.ops.aten.div.Tensor](args = (%sub, %b_std), kwargs = {})J)
+pkg.torch.onnx.name_scopes['', 'div']JÄ
+pkg.torch.onnx.stack_tracebFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 132, in forward
+    x = (x - self.mean) / self.std
+Â
+div
+low.0.0.weight
+low.0.0.weight_biasgetitemnode_Conv_615"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†JÄ
+	namespaceÚ: __main__.Net/low: torch.nn.modules.container.Sequential/low.0: torchvision.ops.misc.Conv2dNormActivation/low.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJË
+pkg.torch.onnx.class_hierarchy≈['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J§
+pkg.torch.onnx.fx_nodeâ%_native_batch_norm_legit_no_training : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d, %p_low_0_1_weight, %p_low_0_1_bias, %b_low_0_1_running_mean, %b_low_0_1_running_var, 0.1, 1e-05), kwargs = {})Je
+pkg.torch.onnx.name_scopesG['', 'low', 'low.0', 'low.0.1', '_native_batch_norm_legit_no_training']J—
+pkg.torch.onnx.stack_trace≤File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ø
+
+getitem
+min_val_cast
+max_val_casthardtanhn4"ClipJ√
+	namespaceµ: __main__.Net/low: torch.nn.modules.container.Sequential/low.0: torchvision.ops.misc.Conv2dNormActivation/low.0.2: torch.nn.modules.activation.ReLU6/hardtanh: aten.hardtanh.defaultJ«
+pkg.torch.onnx.class_hierarchy§['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jï
+pkg.torch.onnx.fx_node{%hardtanh : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem, 0.0, 6.0), kwargs = {})JI
+pkg.torch.onnx.name_scopes+['', 'low', 'low.0', 'low.0.2', 'hardtanh']JÄ
+pkg.torch.onnx.stack_trace·File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+ÿ
+hardtanh
+low.1.conv.0.0.weight
+low.1.conv.0.0.weight_bias	getitem_3node_Conv_617"Conv*
+kernel_shape@@†*
+group †*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.1: torchvision.models.mobilenetv2.InvertedResidual/low.1.conv: torch.nn.modules.container.Sequential/low.1.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.1.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_1: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_1 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_1, %p_low_1_conv_0_1_weight, %p_low_1_conv_0_1_bias, %b_low_1_conv_0_1_running_mean, %b_low_1_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.1', 'low.1.conv', 'low.1.conv.0', 'low.1.conv.0.1', '_native_batch_norm_legit_no_training_1']Jí
+pkg.torch.onnx.stack_traceÛFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ˆ
+	getitem_3
+min_val_cast
+max_val_cast
+hardtanh_1n4_2"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.1: torchvision.models.mobilenetv2.InvertedResidual/low.1.conv: torch.nn.modules.container.Sequential/low.1.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.1.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_1: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jô
+pkg.torch.onnx.fx_node%hardtanh_1 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_3, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.1', 'low.1.conv', 'low.1.conv.0', 'low.1.conv.0.2', 'hardtanh_1']J¡
+pkg.torch.onnx.stack_trace¢File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+¥
+
+hardtanh_1
+low.1.conv.1.weight
+low.1.conv.1.weight_bias	getitem_6node_Conv_619"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jø
+	namespace±: __main__.Net/low: torch.nn.modules.container.Sequential/low.1: torchvision.models.mobilenetv2.InvertedResidual/low.1.conv: torch.nn.modules.container.Sequential/low.1.conv.2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_2: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_2 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_2, %p_low_1_conv_2_weight, %p_low_1_conv_2_bias, %b_low_1_conv_2_running_mean, %b_low_1_conv_2_running_var, 0.1, 1e-05), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'low', 'low.1', 'low.1.conv', 'low.1.conv.2', '_native_batch_norm_legit_no_training_2']JÚ
+pkg.torch.onnx.stack_trace”File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ÿ
+	getitem_6
+low.2.conv.0.0.weight
+low.2.conv.0.0.weight_bias	getitem_9node_Conv_621"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.2: torchvision.models.mobilenetv2.InvertedResidual/low.2.conv: torch.nn.modules.container.Sequential/low.2.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.2.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_3: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_3 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_3, %p_low_2_conv_0_1_weight, %p_low_2_conv_0_1_bias, %b_low_2_conv_0_1_running_mean, %b_low_2_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.2', 'low.2.conv', 'low.2.conv.0', 'low.2.conv.0.1', '_native_batch_norm_legit_no_training_3']Jí
+pkg.torch.onnx.stack_traceÛFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ˆ
+	getitem_9
+min_val_cast
+max_val_cast
+hardtanh_2n4_3"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.2: torchvision.models.mobilenetv2.InvertedResidual/low.2.conv: torch.nn.modules.container.Sequential/low.2.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.2.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_2: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jô
+pkg.torch.onnx.fx_node%hardtanh_2 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_9, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.2', 'low.2.conv', 'low.2.conv.0', 'low.2.conv.0.2', 'hardtanh_2']J¡
+pkg.torch.onnx.stack_trace¢File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+€
+
+hardtanh_2
+low.2.conv.1.0.weight
+low.2.conv.1.0.weight_bias
+getitem_12node_Conv_623"Conv*
+kernel_shape@@†*
+group`†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.2: torchvision.models.mobilenetv2.InvertedResidual/low.2.conv: torch.nn.modules.container.Sequential/low.2.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.2.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_4: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_4 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_4, %p_low_2_conv_1_1_weight, %p_low_2_conv_1_1_bias, %b_low_2_conv_1_1_running_mean, %b_low_2_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.2', 'low.2.conv', 'low.2.conv.1', 'low.2.conv.1.1', '_native_batch_norm_legit_no_training_4']Jí
+pkg.torch.onnx.stack_traceÛFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˘
+
+getitem_12
+min_val_cast
+max_val_cast
+hardtanh_3n4_4"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.2: torchvision.models.mobilenetv2.InvertedResidual/low.2.conv: torch.nn.modules.container.Sequential/low.2.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.2.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_3: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_3 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_12, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.2', 'low.2.conv', 'low.2.conv.1', 'low.2.conv.1.2', 'hardtanh_3']J¡
+pkg.torch.onnx.stack_trace¢File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+µ
+
+hardtanh_3
+low.2.conv.2.weight
+low.2.conv.2.weight_bias
+getitem_15node_Conv_625"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jø
+	namespace±: __main__.Net/low: torch.nn.modules.container.Sequential/low.2: torchvision.models.mobilenetv2.InvertedResidual/low.2.conv: torch.nn.modules.container.Sequential/low.2.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_5: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_5 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_5, %p_low_2_conv_3_weight, %p_low_2_conv_3_bias, %b_low_2_conv_3_running_mean, %b_low_2_conv_3_running_var, 0.1, 1e-05), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'low', 'low.2', 'low.2.conv', 'low.2.conv.3', '_native_batch_norm_legit_no_training_5']JÚ
+pkg.torch.onnx.stack_trace”File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ﬂ
+
+getitem_15
+low.3.conv.0.0.weight
+low.3.conv.0.0.weight_bias
+getitem_18node_Conv_627"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/low.3.conv: torch.nn.modules.container.Sequential/low.3.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.3.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_6: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_6 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_6, %p_low_3_conv_0_1_weight, %p_low_3_conv_0_1_bias, %b_low_3_conv_0_1_running_mean, %b_low_3_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.3', 'low.3.conv', 'low.3.conv.0', 'low.3.conv.0.1', '_native_batch_norm_legit_no_training_6']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˝
+
+getitem_18
+min_val_cast
+max_val_cast
+hardtanh_4n4_5"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/low.3.conv: torch.nn.modules.container.Sequential/low.3.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.3.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_4: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_4 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_18, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.3', 'low.3.conv', 'low.3.conv.0', 'low.3.conv.0.2', 'hardtanh_4']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+‡
+
+hardtanh_4
+low.3.conv.1.0.weight
+low.3.conv.1.0.weight_bias
+getitem_21node_Conv_629"Conv*
+kernel_shape@@†*
+groupê†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/low.3.conv: torch.nn.modules.container.Sequential/low.3.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.3.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_7: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_7 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_7, %p_low_3_conv_1_1_weight, %p_low_3_conv_1_1_bias, %b_low_3_conv_1_1_running_mean, %b_low_3_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.3', 'low.3.conv', 'low.3.conv.1', 'low.3.conv.1.1', '_native_batch_norm_legit_no_training_7']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˝
+
+getitem_21
+min_val_cast
+max_val_cast
+hardtanh_5n4_6"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/low.3.conv: torch.nn.modules.container.Sequential/low.3.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.3.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_5: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_5 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_21, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.3', 'low.3.conv', 'low.3.conv.1', 'low.3.conv.1.2', 'hardtanh_5']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+π
+
+hardtanh_5
+low.3.conv.2.weight
+low.3.conv.2.weight_bias
+getitem_24node_Conv_631"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jø
+	namespace±: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/low.3.conv: torch.nn.modules.container.Sequential/low.3.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_8: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_8 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_8, %p_low_3_conv_3_weight, %p_low_3_conv_3_bias, %b_low_3_conv_3_running_mean, %b_low_3_conv_3_running_var, 0.1, 1e-05), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'low', 'low.3', 'low.3.conv', 'low.3.conv.3', '_native_batch_norm_legit_no_training_8']Jˆ
+pkg.torch.onnx.stack_trace◊File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ó
+
+getitem_15
+
+getitem_24addnode_add"AddJì
+	namespaceÖ: __main__.Net/low: torch.nn.modules.container.Sequential/low.3: torchvision.models.mobilenetv2.InvertedResidual/add: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jê
+pkg.torch.onnx.fx_nodev%add : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_15, %getitem_24), kwargs = {})J9
+pkg.torch.onnx.name_scopes['', 'low', 'low.3', 'add']J∑
+pkg.torch.onnx.stack_traceòFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+‘
+add
+low.4.conv.0.0.weight
+low.4.conv.0.0.weight_bias
+getitem_27node_Conv_633"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J˘
+	namespaceÎ: __main__.Net/low: torch.nn.modules.container.Sequential/low.4: torchvision.models.mobilenetv2.InvertedResidual/low.4.conv: torch.nn.modules.container.Sequential/low.4.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.4.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_9: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jƒ
+pkg.torch.onnx.fx_node©%_native_batch_norm_legit_no_training_9 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_9, %p_low_4_conv_0_1_weight, %p_low_4_conv_0_1_bias, %b_low_4_conv_0_1_running_mean, %b_low_4_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jå
+pkg.torch.onnx.name_scopesn['', 'low', 'low.4', 'low.4.conv', 'low.4.conv.0', 'low.4.conv.0.1', '_native_batch_norm_legit_no_training_9']Jí
+pkg.torch.onnx.stack_traceÛFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˘
+
+getitem_27
+min_val_cast
+max_val_cast
+hardtanh_6n4_7"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.4: torchvision.models.mobilenetv2.InvertedResidual/low.4.conv: torch.nn.modules.container.Sequential/low.4.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.4.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_6: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_6 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_27, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.4', 'low.4.conv', 'low.4.conv.0', 'low.4.conv.0.2', 'hardtanh_6']J¡
+pkg.torch.onnx.stack_trace¢File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+‡
+
+hardtanh_6
+low.4.conv.1.0.weight
+low.4.conv.1.0.weight_bias
+getitem_30node_Conv_635"Conv*
+kernel_shape@@†*
+groupê†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˙
+	namespaceÏ: __main__.Net/low: torch.nn.modules.container.Sequential/low.4: torchvision.models.mobilenetv2.InvertedResidual/low.4.conv: torch.nn.modules.container.Sequential/low.4.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.4.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_10: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_10 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_10, %p_low_4_conv_1_1_weight, %p_low_4_conv_1_1_bias, %b_low_4_conv_1_1_running_mean, %b_low_4_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jç
+pkg.torch.onnx.name_scopeso['', 'low', 'low.4', 'low.4.conv', 'low.4.conv.1', 'low.4.conv.1.1', '_native_batch_norm_legit_no_training_10']Jí
+pkg.torch.onnx.stack_traceÛFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˘
+
+getitem_30
+min_val_cast
+max_val_cast
+hardtanh_7n4_8"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.4: torchvision.models.mobilenetv2.InvertedResidual/low.4.conv: torch.nn.modules.container.Sequential/low.4.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.4.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_7: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_7 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_30, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.4', 'low.4.conv', 'low.4.conv.1', 'low.4.conv.1.2', 'hardtanh_7']J¡
+pkg.torch.onnx.stack_trace¢File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+π
+
+hardtanh_7
+low.4.conv.2.weight
+low.4.conv.2.weight_bias
+getitem_33node_Conv_637"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J¿
+	namespace≤: __main__.Net/low: torch.nn.modules.container.Sequential/low.4: torchvision.models.mobilenetv2.InvertedResidual/low.4.conv: torch.nn.modules.container.Sequential/low.4.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_11: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_11 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_11, %p_low_4_conv_3_weight, %p_low_4_conv_3_bias, %b_low_4_conv_3_running_mean, %b_low_4_conv_3_running_var, 0.1, 1e-05), kwargs = {})J{
+pkg.torch.onnx.name_scopes]['', 'low', 'low.4', 'low.4.conv', 'low.4.conv.3', '_native_batch_norm_legit_no_training_11']JÚ
+pkg.torch.onnx.stack_trace”File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+„
+
+getitem_33
+low.5.conv.0.0.weight
+low.5.conv.0.0.weight_bias
+getitem_36node_Conv_639"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J˙
+	namespaceÏ: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/low.5.conv: torch.nn.modules.container.Sequential/low.5.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.5.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_12: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_12 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_12, %p_low_5_conv_0_1_weight, %p_low_5_conv_0_1_bias, %b_low_5_conv_0_1_running_mean, %b_low_5_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jç
+pkg.torch.onnx.name_scopeso['', 'low', 'low.5', 'low.5.conv', 'low.5.conv.0', 'low.5.conv.0.1', '_native_batch_norm_legit_no_training_12']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˝
+
+getitem_36
+min_val_cast
+max_val_cast
+hardtanh_8n4_9"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/low.5.conv: torch.nn.modules.container.Sequential/low.5.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.5.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_8: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_8 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_36, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.5', 'low.5.conv', 'low.5.conv.0', 'low.5.conv.0.2', 'hardtanh_8']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+‰
+
+hardtanh_8
+low.5.conv.1.0.weight
+low.5.conv.1.0.weight_bias
+getitem_39node_Conv_641"Conv*
+kernel_shape@@†*
+group¿†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˙
+	namespaceÏ: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/low.5.conv: torch.nn.modules.container.Sequential/low.5.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.5.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_13: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_13 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_13, %p_low_5_conv_1_1_weight, %p_low_5_conv_1_1_bias, %b_low_5_conv_1_1_running_mean, %b_low_5_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jç
+pkg.torch.onnx.name_scopeso['', 'low', 'low.5', 'low.5.conv', 'low.5.conv.1', 'low.5.conv.1.1', '_native_batch_norm_legit_no_training_13']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˛
+
+getitem_39
+min_val_cast
+max_val_cast
+hardtanh_9n4_10"ClipJº
+	namespaceÆ: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/low.5.conv: torch.nn.modules.container.Sequential/low.5.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.5.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_9: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jõ
+pkg.torch.onnx.fx_nodeÄ%hardtanh_9 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_39, 0.0, 6.0), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'low', 'low.5', 'low.5.conv', 'low.5.conv.1', 'low.5.conv.1.2', 'hardtanh_9']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+Ω
+
+hardtanh_9
+low.5.conv.2.weight
+low.5.conv.2.weight_bias
+getitem_42node_Conv_643"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J¿
+	namespace≤: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/low.5.conv: torch.nn.modules.container.Sequential/low.5.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_14: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_14 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_14, %p_low_5_conv_3_weight, %p_low_5_conv_3_bias, %b_low_5_conv_3_running_mean, %b_low_5_conv_3_running_var, 0.1, 1e-05), kwargs = {})J{
+pkg.torch.onnx.name_scopes]['', 'low', 'low.5', 'low.5.conv', 'low.5.conv.3', '_native_batch_norm_legit_no_training_14']Jˆ
+pkg.torch.onnx.stack_trace◊File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+¯
+
+getitem_33
+
+getitem_42add_1
+node_add_1"AddJï
+	namespaceá: __main__.Net/low: torch.nn.modules.container.Sequential/low.5: torchvision.models.mobilenetv2.InvertedResidual/add_1: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jí
+pkg.torch.onnx.fx_nodex%add_1 : [num_users=2] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_33, %getitem_42), kwargs = {})J;
+pkg.torch.onnx.name_scopes['', 'low', 'low.5', 'add_1']J∑
+pkg.torch.onnx.stack_traceòFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+ﬁ
+add_1
+low.6.conv.0.0.weight
+low.6.conv.0.0.weight_bias
+getitem_45node_Conv_645"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J˙
+	namespaceÏ: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/low.6.conv: torch.nn.modules.container.Sequential/low.6.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.6.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_15: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_15 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_15, %p_low_6_conv_0_1_weight, %p_low_6_conv_0_1_bias, %b_low_6_conv_0_1_running_mean, %b_low_6_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jç
+pkg.torch.onnx.name_scopeso['', 'low', 'low.6', 'low.6.conv', 'low.6.conv.0', 'low.6.conv.0.1', '_native_batch_norm_legit_no_training_15']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ç
+
+getitem_45
+min_val_cast
+max_val_casthardtanh_10n4_11"ClipJΩ
+	namespaceØ: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/low.6.conv: torch.nn.modules.container.Sequential/low.6.conv.0: torchvision.ops.misc.Conv2dNormActivation/low.6.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_10: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_10 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_45, 0.0, 6.0), kwargs = {})Jq
+pkg.torch.onnx.name_scopesS['', 'low', 'low.6', 'low.6.conv', 'low.6.conv.0', 'low.6.conv.0.2', 'hardtanh_10']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+Â
+hardtanh_10
+low.6.conv.1.0.weight
+low.6.conv.1.0.weight_bias
+getitem_48node_Conv_647"Conv*
+kernel_shape@@†*
+group¿†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J˙
+	namespaceÏ: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/low.6.conv: torch.nn.modules.container.Sequential/low.6.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.6.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_16: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_16 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_16, %p_low_6_conv_1_1_weight, %p_low_6_conv_1_1_bias, %b_low_6_conv_1_1_running_mean, %b_low_6_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jç
+pkg.torch.onnx.name_scopeso['', 'low', 'low.6', 'low.6.conv', 'low.6.conv.1', 'low.6.conv.1.1', '_native_batch_norm_legit_no_training_16']Jñ
+pkg.torch.onnx.stack_trace˜File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ç
+
+getitem_48
+min_val_cast
+max_val_casthardtanh_11n4_12"ClipJΩ
+	namespaceØ: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/low.6.conv: torch.nn.modules.container.Sequential/low.6.conv.1: torchvision.ops.misc.Conv2dNormActivation/low.6.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_11: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_11 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_48, 0.0, 6.0), kwargs = {})Jq
+pkg.torch.onnx.name_scopesS['', 'low', 'low.6', 'low.6.conv', 'low.6.conv.1', 'low.6.conv.1.2', 'hardtanh_11']J≈
+pkg.torch.onnx.stack_trace¶File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+æ
+hardtanh_11
+low.6.conv.2.weight
+low.6.conv.2.weight_bias
+getitem_51node_Conv_649"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J¿
+	namespace≤: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/low.6.conv: torch.nn.modules.container.Sequential/low.6.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_17: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_17 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_17, %p_low_6_conv_3_weight, %p_low_6_conv_3_bias, %b_low_6_conv_3_running_mean, %b_low_6_conv_3_running_var, 0.1, 1e-05), kwargs = {})J{
+pkg.torch.onnx.name_scopes]['', 'low', 'low.6', 'low.6.conv', 'low.6.conv.3', '_native_batch_norm_legit_no_training_17']Jˆ
+pkg.torch.onnx.stack_trace◊File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ó
+add_1
+
+getitem_51add_2
+node_add_2"AddJï
+	namespaceá: __main__.Net/low: torch.nn.modules.container.Sequential/low.6: torchvision.models.mobilenetv2.InvertedResidual/add_2: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jç
+pkg.torch.onnx.fx_nodes%add_2 : [num_users=2] = call_function[target=torch.ops.aten.add.Tensor](args = (%add_1, %getitem_51), kwargs = {})J;
+pkg.torch.onnx.name_scopes['', 'low', 'low.6', 'add_2']J∑
+pkg.torch.onnx.stack_traceòFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 133, in forward
+    a = self.low(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+ú
+add_2
+high.7.conv.0.0.weight
+high.7.conv.0.0.weight_bias
+getitem_54node_Conv_651"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.7: torchvision.models.mobilenetv2.InvertedResidual/high.7.conv: torch.nn.modules.container.Sequential/high.7.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.7.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_18: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_18 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_18, %p_high_7_conv_0_1_weight, %p_high_7_conv_0_1_bias, %b_high_7_conv_0_1_running_mean, %b_high_7_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.7', 'high.7.conv', 'high.7.conv.0', 'high.7.conv.0.1', '_native_batch_norm_legit_no_training_18']Jƒ
+pkg.torch.onnx.stack_trace•File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+∫
+
+getitem_54
+min_val_cast
+max_val_casthardtanh_12n4_13"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.7: torchvision.models.mobilenetv2.InvertedResidual/high.7.conv: torch.nn.modules.container.Sequential/high.7.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.7.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_12: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_12 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_54, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.7', 'high.7.conv', 'high.7.conv.0', 'high.7.conv.0.2', 'hardtanh_12']JÛ
+pkg.torch.onnx.stack_trace‘File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+£
+hardtanh_12
+high.7.conv.1.0.weight
+high.7.conv.1.0.weight_bias
+getitem_57node_Conv_653"Conv*
+kernel_shape@@†*
+group¿†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.7: torchvision.models.mobilenetv2.InvertedResidual/high.7.conv: torch.nn.modules.container.Sequential/high.7.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.7.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_19: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_19 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_19, %p_high_7_conv_1_1_weight, %p_high_7_conv_1_1_bias, %b_high_7_conv_1_1_running_mean, %b_high_7_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.7', 'high.7.conv', 'high.7.conv.1', 'high.7.conv.1.1', '_native_batch_norm_legit_no_training_19']Jƒ
+pkg.torch.onnx.stack_trace•File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+∫
+
+getitem_57
+min_val_cast
+max_val_casthardtanh_13n4_14"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.7: torchvision.models.mobilenetv2.InvertedResidual/high.7.conv: torch.nn.modules.container.Sequential/high.7.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.7.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_13: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_13 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_57, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.7', 'high.7.conv', 'high.7.conv.1', 'high.7.conv.1.2', 'hardtanh_13']JÛ
+pkg.torch.onnx.stack_trace‘File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+˙
+hardtanh_13
+high.7.conv.2.weight
+high.7.conv.2.weight_bias
+getitem_60node_Conv_655"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jƒ
+	namespace∂: __main__.Net/high: torch.nn.modules.container.Sequential/high.7: torchvision.models.mobilenetv2.InvertedResidual/high.7.conv: torch.nn.modules.container.Sequential/high.7.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_20: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¬
+pkg.torch.onnx.fx_nodeß%_native_batch_norm_legit_no_training_20 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_20, %p_high_7_conv_3_weight, %p_high_7_conv_3_bias, %b_high_7_conv_3_running_mean, %b_high_7_conv_3_running_var, 0.1, 1e-05), kwargs = {})J
+pkg.torch.onnx.name_scopesa['', 'high', 'high.7', 'high.7.conv', 'high.7.conv.3', '_native_batch_norm_legit_no_training_20']J§
+pkg.torch.onnx.stack_traceÖFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+•
+
+getitem_60
+high.8.conv.0.0.weight
+high.8.conv.0.0.weight_bias
+getitem_63node_Conv_657"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/high.8.conv: torch.nn.modules.container.Sequential/high.8.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.8.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_21: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_21 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_21, %p_high_8_conv_0_1_weight, %p_high_8_conv_0_1_bias, %b_high_8_conv_0_1_running_mean, %b_high_8_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.8', 'high.8.conv', 'high.8.conv.0', 'high.8.conv.0.1', '_native_batch_norm_legit_no_training_21']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+æ
+
+getitem_63
+min_val_cast
+max_val_casthardtanh_14n4_15"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/high.8.conv: torch.nn.modules.container.Sequential/high.8.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.8.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_14: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_14 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_63, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.8', 'high.8.conv', 'high.8.conv.0', 'high.8.conv.0.2', 'hardtanh_14']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+ß
+hardtanh_14
+high.8.conv.1.0.weight
+high.8.conv.1.0.weight_bias
+getitem_66node_Conv_659"Conv*
+kernel_shape@@†*
+groupÄ†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/high.8.conv: torch.nn.modules.container.Sequential/high.8.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.8.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_22: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_22 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_22, %p_high_8_conv_1_1_weight, %p_high_8_conv_1_1_bias, %b_high_8_conv_1_1_running_mean, %b_high_8_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.8', 'high.8.conv', 'high.8.conv.1', 'high.8.conv.1.1', '_native_batch_norm_legit_no_training_22']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+æ
+
+getitem_66
+min_val_cast
+max_val_casthardtanh_15n4_16"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/high.8.conv: torch.nn.modules.container.Sequential/high.8.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.8.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_15: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_15 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_66, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.8', 'high.8.conv', 'high.8.conv.1', 'high.8.conv.1.2', 'hardtanh_15']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+˛
+hardtanh_15
+high.8.conv.2.weight
+high.8.conv.2.weight_bias
+getitem_69node_Conv_661"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jƒ
+	namespace∂: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/high.8.conv: torch.nn.modules.container.Sequential/high.8.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_23: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¬
+pkg.torch.onnx.fx_nodeß%_native_batch_norm_legit_no_training_23 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_23, %p_high_8_conv_3_weight, %p_high_8_conv_3_bias, %b_high_8_conv_3_running_mean, %b_high_8_conv_3_running_var, 0.1, 1e-05), kwargs = {})J
+pkg.torch.onnx.name_scopesa['', 'high', 'high.8', 'high.8.conv', 'high.8.conv.3', '_native_batch_norm_legit_no_training_23']J®
+pkg.torch.onnx.stack_traceâFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Æ
+
+getitem_60
+
+getitem_69add_3
+node_add_3"AddJó
+	namespaceâ: __main__.Net/high: torch.nn.modules.container.Sequential/high.8: torchvision.models.mobilenetv2.InvertedResidual/add_3: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jí
+pkg.torch.onnx.fx_nodex%add_3 : [num_users=2] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_60, %getitem_69), kwargs = {})J=
+pkg.torch.onnx.name_scopes['', 'high', 'high.8', 'add_3']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+†
+add_3
+high.9.conv.0.0.weight
+high.9.conv.0.0.weight_bias
+getitem_72node_Conv_663"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/high.9.conv: torch.nn.modules.container.Sequential/high.9.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.9.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_24: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_24 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_24, %p_high_9_conv_0_1_weight, %p_high_9_conv_0_1_bias, %b_high_9_conv_0_1_running_mean, %b_high_9_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.9', 'high.9.conv', 'high.9.conv.0', 'high.9.conv.0.1', '_native_batch_norm_legit_no_training_24']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+æ
+
+getitem_72
+min_val_cast
+max_val_casthardtanh_16n4_17"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/high.9.conv: torch.nn.modules.container.Sequential/high.9.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.9.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_16: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_16 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_72, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.9', 'high.9.conv', 'high.9.conv.0', 'high.9.conv.0.2', 'hardtanh_16']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+ß
+hardtanh_16
+high.9.conv.1.0.weight
+high.9.conv.1.0.weight_bias
+getitem_75node_Conv_665"Conv*
+kernel_shape@@†*
+groupÄ†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†Jˇ
+	namespaceÒ: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/high.9.conv: torch.nn.modules.container.Sequential/high.9.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.9.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_25: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J 
+pkg.torch.onnx.fx_nodeØ%_native_batch_norm_legit_no_training_25 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_25, %p_high_9_conv_1_1_weight, %p_high_9_conv_1_1_bias, %b_high_9_conv_1_1_running_mean, %b_high_9_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jí
+pkg.torch.onnx.name_scopest['', 'high', 'high.9', 'high.9.conv', 'high.9.conv.1', 'high.9.conv.1.1', '_native_batch_norm_legit_no_training_25']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+æ
+
+getitem_75
+min_val_cast
+max_val_casthardtanh_17n4_18"ClipJ¬
+	namespace¥: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/high.9.conv: torch.nn.modules.container.Sequential/high.9.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.9.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_17: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_17 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_75, 0.0, 6.0), kwargs = {})Jv
+pkg.torch.onnx.name_scopesX['', 'high', 'high.9', 'high.9.conv', 'high.9.conv.1', 'high.9.conv.1.2', 'hardtanh_17']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+˛
+hardtanh_17
+high.9.conv.2.weight
+high.9.conv.2.weight_bias
+getitem_78node_Conv_667"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †Jƒ
+	namespace∂: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/high.9.conv: torch.nn.modules.container.Sequential/high.9.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_26: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¬
+pkg.torch.onnx.fx_nodeß%_native_batch_norm_legit_no_training_26 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_26, %p_high_9_conv_3_weight, %p_high_9_conv_3_bias, %b_high_9_conv_3_running_mean, %b_high_9_conv_3_running_var, 0.1, 1e-05), kwargs = {})J
+pkg.torch.onnx.name_scopesa['', 'high', 'high.9', 'high.9.conv', 'high.9.conv.3', '_native_batch_norm_legit_no_training_26']J®
+pkg.torch.onnx.stack_traceâFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+§
+add_3
+
+getitem_78add_4
+node_add_4"AddJó
+	namespaceâ: __main__.Net/high: torch.nn.modules.container.Sequential/high.9: torchvision.models.mobilenetv2.InvertedResidual/add_4: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jç
+pkg.torch.onnx.fx_nodes%add_4 : [num_users=2] = call_function[target=torch.ops.aten.add.Tensor](args = (%add_3, %getitem_78), kwargs = {})J=
+pkg.torch.onnx.name_scopes['', 'high', 'high.9', 'add_4']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+Æ
+add_4
+high.10.conv.0.0.weight
+high.10.conv.0.0.weight_bias
+getitem_81node_Conv_669"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/high.10.conv: torch.nn.modules.container.Sequential/high.10.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.10.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_27: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_27 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_27, %p_high_10_conv_0_1_weight, %p_high_10_conv_0_1_bias, %b_high_10_conv_0_1_running_mean, %b_high_10_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.10', 'high.10.conv', 'high.10.conv.0', 'high.10.conv.0.1', '_native_batch_norm_legit_no_training_27']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+∆
+
+getitem_81
+min_val_cast
+max_val_casthardtanh_18n4_19"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/high.10.conv: torch.nn.modules.container.Sequential/high.10.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.10.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_18: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_18 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_81, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.10', 'high.10.conv', 'high.10.conv.0', 'high.10.conv.0.2', 'hardtanh_18']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+µ
+hardtanh_18
+high.10.conv.1.0.weight
+high.10.conv.1.0.weight_bias
+getitem_84node_Conv_671"Conv*
+kernel_shape@@†*
+groupÄ†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/high.10.conv: torch.nn.modules.container.Sequential/high.10.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.10.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_28: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_28 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_28, %p_high_10_conv_1_1_weight, %p_high_10_conv_1_1_bias, %b_high_10_conv_1_1_running_mean, %b_high_10_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.10', 'high.10.conv', 'high.10.conv.1', 'high.10.conv.1.1', '_native_batch_norm_legit_no_training_28']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+∆
+
+getitem_84
+min_val_cast
+max_val_casthardtanh_19n4_20"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/high.10.conv: torch.nn.modules.container.Sequential/high.10.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.10.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_19: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_19 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_84, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.10', 'high.10.conv', 'high.10.conv.1', 'high.10.conv.1.2', 'hardtanh_19']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+ã
+hardtanh_19
+high.10.conv.2.weight
+high.10.conv.2.weight_bias
+getitem_87node_Conv_673"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J«
+	namespaceπ: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/high.10.conv: torch.nn.modules.container.Sequential/high.10.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_29: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_29 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_29, %p_high_10_conv_3_weight, %p_high_10_conv_3_bias, %b_high_10_conv_3_running_mean, %b_high_10_conv_3_running_var, 0.1, 1e-05), kwargs = {})JÇ
+pkg.torch.onnx.name_scopesd['', 'high', 'high.10', 'high.10.conv', 'high.10.conv.3', '_native_batch_norm_legit_no_training_29']J®
+pkg.torch.onnx.stack_traceâFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+¶
+add_4
+
+getitem_87add_5
+node_add_5"AddJò
+	namespaceä: __main__.Net/high: torch.nn.modules.container.Sequential/high.10: torchvision.models.mobilenetv2.InvertedResidual/add_5: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jç
+pkg.torch.onnx.fx_nodes%add_5 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%add_4, %getitem_87), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'high', 'high.10', 'add_5']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+™
+add_5
+high.11.conv.0.0.weight
+high.11.conv.0.0.weight_bias
+getitem_90node_Conv_675"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.11: torchvision.models.mobilenetv2.InvertedResidual/high.11.conv: torch.nn.modules.container.Sequential/high.11.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.11.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_30: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_30 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_30, %p_high_11_conv_0_1_weight, %p_high_11_conv_0_1_bias, %b_high_11_conv_0_1_running_mean, %b_high_11_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.11', 'high.11.conv', 'high.11.conv.0', 'high.11.conv.0.1', '_native_batch_norm_legit_no_training_30']Jƒ
+pkg.torch.onnx.stack_trace•File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+¬
+
+getitem_90
+min_val_cast
+max_val_casthardtanh_20n4_21"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.11: torchvision.models.mobilenetv2.InvertedResidual/high.11.conv: torch.nn.modules.container.Sequential/high.11.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.11.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_20: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_20 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_90, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.11', 'high.11.conv', 'high.11.conv.0', 'high.11.conv.0.2', 'hardtanh_20']JÛ
+pkg.torch.onnx.stack_trace‘File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+±
+hardtanh_20
+high.11.conv.1.0.weight
+high.11.conv.1.0.weight_bias
+getitem_93node_Conv_677"Conv*
+kernel_shape@@†*
+groupÄ†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.11: torchvision.models.mobilenetv2.InvertedResidual/high.11.conv: torch.nn.modules.container.Sequential/high.11.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.11.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_31: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_31 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_31, %p_high_11_conv_1_1_weight, %p_high_11_conv_1_1_bias, %b_high_11_conv_1_1_running_mean, %b_high_11_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.11', 'high.11.conv', 'high.11.conv.1', 'high.11.conv.1.1', '_native_batch_norm_legit_no_training_31']Jƒ
+pkg.torch.onnx.stack_trace•File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+¬
+
+getitem_93
+min_val_cast
+max_val_casthardtanh_21n4_22"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.11: torchvision.models.mobilenetv2.InvertedResidual/high.11.conv: torch.nn.modules.container.Sequential/high.11.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.11.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_21: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_21 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_93, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.11', 'high.11.conv', 'high.11.conv.1', 'high.11.conv.1.2', 'hardtanh_21']JÛ
+pkg.torch.onnx.stack_trace‘File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+á
+hardtanh_21
+high.11.conv.2.weight
+high.11.conv.2.weight_bias
+getitem_96node_Conv_679"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J«
+	namespaceπ: __main__.Net/high: torch.nn.modules.container.Sequential/high.11: torchvision.models.mobilenetv2.InvertedResidual/high.11.conv: torch.nn.modules.container.Sequential/high.11.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_32: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_32 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_32, %p_high_11_conv_3_weight, %p_high_11_conv_3_bias, %b_high_11_conv_3_running_mean, %b_high_11_conv_3_running_var, 0.1, 1e-05), kwargs = {})JÇ
+pkg.torch.onnx.name_scopesd['', 'high', 'high.11', 'high.11.conv', 'high.11.conv.3', '_native_batch_norm_legit_no_training_32']J§
+pkg.torch.onnx.stack_traceÖFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 64, in forward
+    return self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+≥
+
+getitem_96
+high.12.conv.0.0.weight
+high.12.conv.0.0.weight_bias
+getitem_99node_Conv_681"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/high.12.conv: torch.nn.modules.container.Sequential/high.12.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.12.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_33: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_33 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_33, %p_high_12_conv_0_1_weight, %p_high_12_conv_0_1_bias, %b_high_12_conv_0_1_running_mean, %b_high_12_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.12', 'high.12.conv', 'high.12.conv.0', 'high.12.conv.0.1', '_native_batch_norm_legit_no_training_33']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+∆
+
+getitem_99
+min_val_cast
+max_val_casthardtanh_22n4_23"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/high.12.conv: torch.nn.modules.container.Sequential/high.12.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.12.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_22: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jú
+pkg.torch.onnx.fx_nodeÅ%hardtanh_22 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_99, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.12', 'high.12.conv', 'high.12.conv.0', 'high.12.conv.0.2', 'hardtanh_22']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+∂
+hardtanh_22
+high.12.conv.1.0.weight
+high.12.conv.1.0.weight_biasgetitem_102node_Conv_683"Conv*
+kernel_shape@@†*
+group¿†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/high.12.conv: torch.nn.modules.container.Sequential/high.12.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.12.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_34: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_34 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_34, %p_high_12_conv_1_1_weight, %p_high_12_conv_1_1_bias, %b_high_12_conv_1_1_running_mean, %b_high_12_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.12', 'high.12.conv', 'high.12.conv.1', 'high.12.conv.1.1', '_native_batch_norm_legit_no_training_34']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+»
+getitem_102
+min_val_cast
+max_val_casthardtanh_23n4_24"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/high.12.conv: torch.nn.modules.container.Sequential/high.12.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.12.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_23: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jù
+pkg.torch.onnx.fx_nodeÇ%hardtanh_23 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_102, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.12', 'high.12.conv', 'high.12.conv.1', 'high.12.conv.1.2', 'hardtanh_23']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+å
+hardtanh_23
+high.12.conv.2.weight
+high.12.conv.2.weight_biasgetitem_105node_Conv_685"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J«
+	namespaceπ: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/high.12.conv: torch.nn.modules.container.Sequential/high.12.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_35: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_35 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_35, %p_high_12_conv_3_weight, %p_high_12_conv_3_bias, %b_high_12_conv_3_running_mean, %b_high_12_conv_3_running_var, 0.1, 1e-05), kwargs = {})JÇ
+pkg.torch.onnx.name_scopesd['', 'high', 'high.12', 'high.12.conv', 'high.12.conv.3', '_native_batch_norm_legit_no_training_35']J®
+pkg.torch.onnx.stack_traceâFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+≤
+
+getitem_96
+getitem_105add_6
+node_add_6"AddJò
+	namespaceä: __main__.Net/high: torch.nn.modules.container.Sequential/high.12: torchvision.models.mobilenetv2.InvertedResidual/add_6: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jì
+pkg.torch.onnx.fx_nodey%add_6 : [num_users=2] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_96, %getitem_105), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'high', 'high.12', 'add_6']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+Ø
+add_6
+high.13.conv.0.0.weight
+high.13.conv.0.0.weight_biasgetitem_108node_Conv_687"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/high.13.conv: torch.nn.modules.container.Sequential/high.13.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.13.conv.0.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_36: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_36 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_36, %p_high_13_conv_0_1_weight, %p_high_13_conv_0_1_bias, %b_high_13_conv_0_1_running_mean, %b_high_13_conv_0_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.13', 'high.13.conv', 'high.13.conv.0', 'high.13.conv.0.1', '_native_batch_norm_legit_no_training_36']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+»
+getitem_108
+min_val_cast
+max_val_casthardtanh_24n4_25"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/high.13.conv: torch.nn.modules.container.Sequential/high.13.conv.0: torchvision.ops.misc.Conv2dNormActivation/high.13.conv.0.2: torch.nn.modules.activation.ReLU6/hardtanh_24: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jù
+pkg.torch.onnx.fx_nodeÇ%hardtanh_24 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_108, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.13', 'high.13.conv', 'high.13.conv.0', 'high.13.conv.0.2', 'hardtanh_24']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+∂
+hardtanh_24
+high.13.conv.1.0.weight
+high.13.conv.1.0.weight_biasgetitem_111node_Conv_689"Conv*
+kernel_shape@@†*
+group¿†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†JÉ
+	namespaceı: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/high.13.conv: torch.nn.modules.container.Sequential/high.13.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.13.conv.1.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_37: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJƒ
+pkg.torch.onnx.class_hierarchy°['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JŒ
+pkg.torch.onnx.fx_node≥%_native_batch_norm_legit_no_training_37 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_37, %p_high_13_conv_1_1_weight, %p_high_13_conv_1_1_bias, %b_high_13_conv_1_1_running_mean, %b_high_13_conv_1_1_running_var, 0.1, 1e-05), kwargs = {})Jñ
+pkg.torch.onnx.name_scopesx['', 'high', 'high.13', 'high.13.conv', 'high.13.conv.1', 'high.13.conv.1.1', '_native_batch_norm_legit_no_training_37']J»
+pkg.torch.onnx.stack_trace©File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+»
+getitem_111
+min_val_cast
+max_val_casthardtanh_25n4_26"ClipJ∆
+	namespace∏: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/high.13.conv: torch.nn.modules.container.Sequential/high.13.conv.1: torchvision.ops.misc.Conv2dNormActivation/high.13.conv.1.2: torch.nn.modules.activation.ReLU6/hardtanh_25: aten.hardtanh.defaultJ£
+pkg.torch.onnx.class_hierarchyÄ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torchvision.ops.misc.Conv2dNormActivation', 'torch.nn.modules.activation.ReLU6', 'aten.hardtanh.default']Jù
+pkg.torch.onnx.fx_nodeÇ%hardtanh_25 : [num_users=1] = call_function[target=torch.ops.aten.hardtanh.default](args = (%getitem_111, 0.0, 6.0), kwargs = {})Jz
+pkg.torch.onnx.name_scopes\['', 'high', 'high.13', 'high.13.conv', 'high.13.conv.1', 'high.13.conv.1.2', 'hardtanh_25']J˜
+pkg.torch.onnx.stack_traceÿFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 294, in forward
+    return F.hardtanh(input, self.min_val, self.max_val, self.inplace)
+å
+hardtanh_25
+high.13.conv.2.weight
+high.13.conv.2.weight_biasgetitem_114node_Conv_691"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J«
+	namespaceπ: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/high.13.conv: torch.nn.modules.container.Sequential/high.13.conv.3: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_38: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJó
+pkg.torch.onnx.class_hierarchyÙ['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J∆
+pkg.torch.onnx.fx_node´%_native_batch_norm_legit_no_training_38 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_38, %p_high_13_conv_3_weight, %p_high_13_conv_3_bias, %b_high_13_conv_3_running_mean, %b_high_13_conv_3_running_var, 0.1, 1e-05), kwargs = {})JÇ
+pkg.torch.onnx.name_scopesd['', 'high', 'high.13', 'high.13.conv', 'high.13.conv.3', '_native_batch_norm_legit_no_training_38']J®
+pkg.torch.onnx.stack_traceâFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+®
+add_6
+getitem_114add_7
+node_add_7"AddJò
+	namespaceä: __main__.Net/high: torch.nn.modules.container.Sequential/high.13: torchvision.models.mobilenetv2.InvertedResidual/add_7: aten.add.TensorJ°
+pkg.torch.onnx.class_hierarchy['__main__.Net', 'torch.nn.modules.container.Sequential', 'torchvision.models.mobilenetv2.InvertedResidual', 'aten.add.Tensor']Jé
+pkg.torch.onnx.fx_nodet%add_7 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%add_6, %getitem_114), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'high', 'high.13', 'add_7']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torchvision\models\mobilenetv2.py", line 62, in forward
+    return x + self.conv(x)
+‡
+add_7
+ 
+val_432upsample_nearest2dnode_upsample_nearest2d"Resize*
+mode"nearest†*
+cubic_coeff_a  @ø†*/
+coordinate_transformation_mode"
+asymmetric†*
+exclude_outside †*
+nearest_mode"floor†*
+	antialias †*
+extrapolation_value    †*&
+keep_aspect_ratio_policy"stretch†JK
+	namespace>: __main__.Net/upsample_nearest2d: aten.upsample_nearest2d.vecJQ
+pkg.torch.onnx.class_hierarchy/['__main__.Net', 'aten.upsample_nearest2d.vec']J¨
+pkg.torch.onnx.fx_nodeë%upsample_nearest2d : [num_users=1] = call_function[target=torch.ops.aten.upsample_nearest2d.vec](args = (%add_7, None, [2.0, 2.0]), kwargs = {})J8
+pkg.torch.onnx.name_scopes['', 'upsample_nearest2d']J§
+pkg.torch.onnx.stack_traceÖFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 134, in forward
+    b = F.interpolate(self.high(a), scale_factor=2.0, mode="nearest")
+ñ
+add_2
+upsample_nearest2dcatnode_cat"Concat*
+axis†J1
+	namespace$: __main__.Net/cat: aten.cat.defaultJF
+pkg.torch.onnx.class_hierarchy$['__main__.Net', 'aten.cat.default']Jô
+pkg.torch.onnx.fx_node%cat : [num_users=1] = call_function[target=torch.ops.aten.cat.default](args = ([%add_2, %upsample_nearest2d], 1), kwargs = {})J)
+pkg.torch.onnx.name_scopes['', 'cat']Jí
+pkg.torch.onnx.stack_tracetFile "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+Ê
+cat
+fuse.0.weight
+fuse.0.biasgetitem_117node_Conv_692"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J“
+	namespaceƒ: __main__.Net/fuse: torch.nn.modules.container.Sequential/fuse.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_39: aten._native_batch_norm_legit_no_training.defaultJ:
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvJª
+pkg.torch.onnx.class_hierarchyò['__main__.Net', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¶
+pkg.torch.onnx.fx_nodeã%_native_batch_norm_legit_no_training_39 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_39, %p_fuse_1_weight, %p_fuse_1_bias, %b_fuse_1_running_mean, %b_fuse_1_running_var, 0.1, 1e-05), kwargs = {})J_
+pkg.torch.onnx.name_scopesA['', 'fuse', 'fuse.1', '_native_batch_norm_legit_no_training_39']J“
+pkg.torch.onnx.stack_trace≥File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+˚
+getitem_117relu	node_relu"ReluJà
+	namespace{: __main__.Net/fuse: torch.nn.modules.container.Sequential/fuse.2: torch.nn.modules.activation.ReLU/relu: aten.relu.defaultJî
+pkg.torch.onnx.class_hierarchyr['__main__.Net', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jà
+pkg.torch.onnx.fx_noden%relu : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_117,), kwargs = {})J<
+pkg.torch.onnx.name_scopes['', 'fuse', 'fuse.2', 'relu']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+Á
+relu
+fuse.3.weight
+fuse.3.biasgetitem_120node_Conv_693"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@@@@†J“
+	namespaceƒ: __main__.Net/fuse: torch.nn.modules.container.Sequential/fuse.4: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_40: aten._native_batch_norm_legit_no_training.defaultJ:
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvJª
+pkg.torch.onnx.class_hierarchyò['__main__.Net', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¶
+pkg.torch.onnx.fx_nodeã%_native_batch_norm_legit_no_training_40 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_40, %p_fuse_4_weight, %p_fuse_4_bias, %b_fuse_4_running_mean, %b_fuse_4_running_var, 0.1, 1e-05), kwargs = {})J_
+pkg.torch.onnx.name_scopesA['', 'fuse', 'fuse.4', '_native_batch_norm_legit_no_training_40']J“
+pkg.torch.onnx.stack_trace≥File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+Ö
+getitem_120relu_1node_relu_1"ReluJä
+	namespace}: __main__.Net/fuse: torch.nn.modules.container.Sequential/fuse.5: torch.nn.modules.activation.ReLU/relu_1: aten.relu.defaultJî
+pkg.torch.onnx.class_hierarchyr['__main__.Net', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jä
+pkg.torch.onnx.fx_nodep%relu_1 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_120,), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'fuse', 'fuse.5', 'relu_1']JÈ
+pkg.torch.onnx.stack_trace File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+Ø
+relu_1
+
+out.weight
+out.biasoutputnode_conv2d_41"Conv*
+kernel_shape@@†*
+group†*
+auto_pad"NOTSET†*
+	dilations@@†*
+strides@@†*
+pads@ @ @ @ †J\
+	namespaceO: __main__.Net/out: torch.nn.modules.conv.Conv2d/conv2d_41: aten.conv2d.defaultJi
+pkg.torch.onnx.class_hierarchyG['__main__.Net', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J¶
+pkg.torch.onnx.fx_nodeã%conv2d_41 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_1, %p_out_weight, %p_out_bias), kwargs = {})J6
+pkg.torch.onnx.name_scopes['', 'out', 'conv2d_41']J—
+pkg.torch.onnx.stack_trace≤File "D:\ROV\OpenCVCNN\train_cnn_heat.py", line 135, in forward
+    return self.out(self.fuse(torch.cat([a, b], 1)))
+  File "C:\Users\aqsaf\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\torch\nn\modules\conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+main_graph*Z Blow.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset0j
+length3456p*d Blow.1.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset3456j
+length1152p*b Blow.1.conv.1.weightj
+locationbuoy_heat.onnx.dataj
+offset4608j
+length2048p*d`Blow.2.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset6656j
+length6144p*e`Blow.2.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset12800j
+length3456p*c`Blow.2.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset16256j
+length9216p*gêBlow.3.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset25472j
+length13824p*fêBlow.3.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset39296j
+length5184p*eêBlow.3.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset44480j
+length13824p*gêBlow.4.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset58304j
+length13824p*fêBlow.4.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset72128j
+length5184p*e êBlow.4.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset77312j
+length18432p*g¿ Blow.5.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset95744j
+length24576p*g¿Blow.5.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset120320j
+length6912p*f ¿Blow.5.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset127232j
+length24576p*h¿ Blow.6.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset151808j
+length24576p*g¿Blow.6.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset176384j
+length6912p*f ¿Blow.6.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset183296j
+length24576p*i¿ Bhigh.7.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset207872j
+length24576p*h¿Bhigh.7.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset232448j
+length6912p*g@¿Bhigh.7.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset239360j
+length49152p*iÄ@Bhigh.8.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset288512j
+length98304p*iÄBhigh.8.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset386816j
+length13824p*g@ÄBhigh.8.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset400640j
+length98304p*iÄ@Bhigh.9.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset498944j
+length98304p*iÄBhigh.9.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset597248j
+length13824p*g@ÄBhigh.9.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset611072j
+length98304p*jÄ@Bhigh.10.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset709376j
+length98304p*jÄBhigh.10.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset807680j
+length13824p*h@ÄBhigh.10.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset821504j
+length98304p*jÄ@Bhigh.11.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset919808j
+length98304p*kÄBhigh.11.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset1018112j
+length13824p*j`ÄBhigh.11.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset1031936j
+length147456p*l¿`Bhigh.12.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset1179392j
+length221184p*k¿Bhigh.12.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset1400576j
+length20736p*j`¿Bhigh.12.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset1421312j
+length221184p*l¿`Bhigh.13.conv.0.0.weightj
+locationbuoy_heat.onnx.dataj
+offset1642496j
+length221184p*k¿Bhigh.13.conv.1.0.weightj
+locationbuoy_heat.onnx.dataj
+offset1863680j
+length20736p*j`¿Bhigh.13.conv.2.weightj
+locationbuoy_heat.onnx.dataj
+offset1884416j
+length221184p*b`ÄBfuse.0.weightj
+locationbuoy_heat.onnx.dataj
+offset2105600j
+length442368p*V`Bfuse.0.biasj
+locationbuoy_heat.onnx.dataj
+offset2547968j
+length384p*a@`Bfuse.3.weightj
+locationbuoy_heat.onnx.dataj
+offset2548352j
+length221184p*î@Bfuse.3.biasJÄÊõ^>ëÛO?‡˙Wøá˙ø⁄ÔÆæ›œ=Ë±Ÿ=É®æ'}øx¥a?òÕá>Ì~?§Ã?6l€=FË-?¡3?Î›Tø»ù~?‡ﬂ>˝…&ø4‰ˆæW·æâº?°†<S@ø¸2?'ƒ>?m©?¥ô,>Hììº:3Ωæêª?[¶?o.A?Œhú?íÀº>∂1?≈Ö?4«4=œ†ø=Ëø*…€>#dIøI|Ω§ı¡?¿ºWørø>”ø)]Ó>=—´?<nv>iGh?)Ωø)uæN|É?0ì—>kÆ®>OhôæΩ«væq∑??∂øq@ñø˘àÜæú,f?*[@B
+out.weightj
+locationbuoy_heat.onnx.dataj
+offset2769536j
+length768p*Bout.biasJ|?¿8æ´ºπ]¥Ω*BmeanJÏQ¯>’xÈ>;ﬂœ>*BstdJ˙~j>B`e>fff>*Bmin_val_castJ    *Bmax_val_castJ  ¿@*ú Blow.0.0.weight_biasJÄã¡ø;™ù¿Ra†>|i&@ﬁ‹A@˛x9@∑ 
+@ŒŒ;@#î#@lØU@ @#YÕ@ãêøNﬂ†ø‰ı@a›?ˆã5@¶ ¯>à∑5@ñ1@Ïí@∞=Ω:?Æ•>õéπ@∫‹?@i@´V@¥Én?´Ùø¯#Ã¿¿N?*£ Blow.1.conv.0.0.weight_biasJÄpï2æ˛√Ã>†@óª.xA@òÒÇæB9@b[I@Ê“Q@Vﬁ*@˝ë˝?ÎhG@ÕÖ@dÏ>◊rløS&%@¿π¨=oÄ@‹÷¡=V8ì@
+Ì¿@⁄ù@ÏÙ»Ω 8Ùπ0›„º∆≈@ìD%@‚i?âid@ÿ˘=íΩmøãÅ?Áıæ@*`Blow.1.conv.1.weight_biasJ@xT:@ìï AGW˝øŒA¡Áh¡yÿr¬Ÿ∂ì¿I¬zAóœ>⁄Û‘ø∞ﬁô¿≈p¿,X?O†@—àz¡I	W¡*e`Blow.2.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2770304j
+length384p*e`Blow.2.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2770688j
+length384p*ÄBlow.2.conv.2.weight_biasJ`qõ@_ÖgAoã#¿¸=@£t@‰√@˜–¡ƒ˙@EA˜¿wâ•¿Aö±¿uwBÚçA√ô1¿ 0AAFrY¡lø®?kU@¿Y@¡j¿%kN¿té∏A{ß?Ò˝FA*fêBlow.3.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2771072j
+length576p*fêBlow.3.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2771648j
+length576p*ÄBlow.3.conv.2.weight_biasJ`#g¨@P~¿å“wøZµ'¿3Ä‚ø…áA–OØ¿€r¿¸"ó@A3ä¡Ëvm¿“”¡iZ?-ˆû@7s;¡‡éË¿—√lAˆ[¿ÕŸ;A±p@˚F9AÄ“§>‡óO¿ctr?*fêBlow.4.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2772224j
+length576p*fêBlow.4.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2772800j
+length576p*° Blow.4.conv.2.weight_biasJÄWÀ›¿"˙S@æÒ¯¿Â¸¿U9@yì¿1:Ë?ÿ0@[Õ@(Ë¿í¶¡˘Ä‘¿·Tû?˛«¨@≤tÑ@€n˙@a5Aéc@‰1ÿ@Ü≤Aı¸¿3€¥ø¿ﬂé¡Zµ€>«ŸéA Ë	Aˆ¨l@>Uõ@^!¡◊7G¿)ZüæéÜ?*f¿Blow.5.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2773376j
+length768p*f¿Blow.5.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2774144j
+length768p*° Blow.5.conv.2.weight_biasJÄ=ì¯?√Ly¿Â¨@˛‡@Ëº™ø…_≤¿Àˇ;=πè¿éz.@˙ÿ∏¿|¿_‰øil˛¿NﬁAt`?·ÒÜøﬂèÇ?´€Ø¿ã√%@¥ÎY¿&†˝¿œQ|@–9?ÏçúøBæ¡I£Ô¿H€Ó@åüAß?À¡˝\Û?‡s@˘Zí@*f¿Blow.6.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2774912j
+length768p*f¿Blow.6.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2775680j
+length768p*° Blow.6.conv.2.weight_biasJÄFTg@Û+¡>¢"0AÉ/©ø˚¬?ó”èøpV?€⁄≈? igørX¿›œøÛà¥Ω®ˇèø*°a¬œÏ/@∑¶>oø"@q%¡.3Û¿«I{?Ñ∆y?=ˇ!@‰Ç;?vùDøQD¡—áÃøêÓ<¿?H¯?GABsMø»ÔÅ?Á≠t¿*g¿Bhigh.7.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2776448j
+length768p*g¿Bhigh.7.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2777216j
+length768p*¢@Bhigh.7.conv.2.weight_biasJÄŸñ@†v`¡0≥¿p—†¿˛0Z@l3â¡˜©¿Äù8A#Ëã¿ód∑¿–AHA-¶@5@¡Ìd£A¥©øÊ,Ü¡‰_G¡¸	¡˝n¡K8øe'¡9J≥¿^x¿tœñ@˝Ÿ/¿@í@UR[¡5èX?AƒBAıh¿Æ^rA6,¡Ê7P?Ó'¡˜_B@DÎá¿+∫7?¯d§¿BPZ@oAä˚sA-:¡î
+=¡¶]¡'eQ¡Up¸?hô<¿W§X¡L¥[@¸p‡@ñ<¥@:‡ïAN
+A⁄iADA£Â¿^Î¿¢√¢A=Næ¿=¡<A¯jì?ì6oAÿ∑\A*hÄBhigh.8.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2777984j
+length1536p*hÄBhigh.8.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2779520j
+length1536p*¢@Bhigh.8.conv.2.weight_biasJÄvz>AXÏ°æ1ƒª?)B=¿ÑSÊø¢5ôæh∫ø9ƒeøß-s@Ÿ∆?í0"¿kÒÜ@Âª?ÿﬁÚ?˘A.@ÚÜ◊?ÔœAAE√[ø•?6îwøV?ø:§r?÷¿àø·≠ ø¢¸ÿøP‚øòñ”?Îí øßmûøÀÙã>∂e◊>œñ@ü°˘?ıàá¿Clπø€†$@∫6@ÓMí@kÏ¸¿Ÿ)`ø‡≥æ?qs¬?¬≥˝>–1ø´ë™¿@ÚøÈ}1@ñnÈ@kBsæŸ·!?bÎ"?K(@~Ãº∑pç>Ÿ©ûø‹Wøh⁄œ?`ïø@ÿp—>v	∫øºCﬁø°Ï
+¿TMEø ±"Ω*hÄBhigh.9.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2781056j
+length1536p*hÄBhigh.9.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2782592j
+length1536p*¢@Bhigh.9.conv.2.weight_biasJÄ+Â ¡_ÿE?áR)¡ﬂ=ë¿Ë;¢¿W`ö@∑s˝Ω]»@CäG¡Bïî¿√’?ÚÙ∆@éÉ?r∆¿æm˝@Mû¿ÆÂë¿Ÿ’@bıõ¿…ß(>’Ó7?{ªApSøì@&◊˝?û/‡¿‡≤A9w¡—†ï?4û$@[•›?ÒÕ˜?ÃU≈=≤Hùøö¢<@pQøw¸èøúF‰øP_@˝£@‡≥Z?Ä>@≤Gøµ—√?„Ôn@⁄È˛@gïÓ>î¨Œ@otFø+”ÇøsëÊ?∏0-??ÿ_¿_$¿∏Aè¿ª©ñ¿1Ô…øJo3Afó‰?¡§@PU?bÔxøÆrøN¡æ*iÄBhigh.10.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2784128j
+length1536p*iÄBhigh.10.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2785664j
+length1536p*£@Bhigh.10.conv.2.weight_biasJÄ$≥Ω¿GX?›“äøëô"ø$÷ˆ¿;^D¿™&œ>EXû?Ój≈?¥4Ú@Ç=›øaﬁÉ?Ø)E@´®ø^m`¡üê•¿0˘@U.¿&1ƒ?Ä3†øƒôÙ?›.¡dÃT¿7≤ø≤ã¢@ú;^>2≈H@¿B≠@‹&@A6ı?±d„@;i?HPà¿®(o¡ùŸì@¯¡k¿j@ÿ˙hΩ>r8¿.V`>˛X0@g Àæg+$¿…≠“?/ŒA'>AX‹wø% ‘<î$=;¥@d$<¡uPcø_ù∞>Œ
+6?¥¬^?	®™ø|Ì?:x#¡\S¿°•ΩÖN[?ˆ@¯Â@Nm¬?*iÄBhigh.11.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2787200j
+length1536p*iÄBhigh.11.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2788736j
+length1536p*e`Bhigh.11.conv.2.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2790272j
+length384p*i¿Bhigh.12.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2790656j
+length2304p*i¿Bhigh.12.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2792960j
+length2304p*e`Bhigh.12.conv.2.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2795264j
+length384p*i¿Bhigh.13.conv.0.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2795648j
+length2304p*i¿Bhigh.13.conv.1.0.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2797952j
+length2304p*e`Bhigh.13.conv.2.weight_biasj
+locationbuoy_heat.onnx.dataj
+offset2800256j
+length384p*Bval_432J  Ä?  Ä?   @   @Z«
+input
+
+
+
+¿
+¿"=
+/pkg.torch.export.graph_signature.InputSpec.kind
+USER_INPUT"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"&
+!pkg.torch.onnx.original_node_namexbë
+output
+
+
+
+(
+("?
+0pkg.torch.export.graph_signature.OutputSpec.kindUSER_OUTPUT".
+!pkg.torch.onnx.original_node_name	conv2d_41j(
+low.0.0.weight
+
+ 
+
+
+j/
+low.1.conv.0.0.weight
+
+ 
+
+
+j-
+low.1.conv.1.weight
+
+
+ 
+
+j/
+low.2.conv.0.0.weight
+
+`
+
+
+j/
+low.2.conv.1.0.weight
+
+`
+
+
+j-
+low.2.conv.2.weight
+
+
+`
+
+j0
+low.3.conv.0.0.weight
+
+ê
+
+
+j0
+low.3.conv.1.0.weight
+
+ê
+
+
+j.
+low.3.conv.2.weight
+
+
+ê
+
+j0
+low.4.conv.0.0.weight
+
+ê
+
+
+j0
+low.4.conv.1.0.weight
+
+ê
+
+
+j.
+low.4.conv.2.weight
+
+ 
+ê
+
+j0
+low.5.conv.0.0.weight
+
+¿
+ 
+
+j0
+low.5.conv.1.0.weight
+
+¿
+
+
+j.
+low.5.conv.2.weight
+
+ 
+¿
+
+j0
+low.6.conv.0.0.weight
+
+¿
+ 
+
+j0
+low.6.conv.1.0.weight
+
+¿
+
+
+j.
+low.6.conv.2.weight
+
+ 
+¿
+
+j1
+high.7.conv.0.0.weight
+
+¿
+ 
+
+j1
+high.7.conv.1.0.weight
+
+¿
+
+
+j/
+high.7.conv.2.weight
+
+@
+¿
+
+j1
+high.8.conv.0.0.weight
+
+Ä
+@
+
+j1
+high.8.conv.1.0.weight
+
+Ä
+
+
+j/
+high.8.conv.2.weight
+
+@
+Ä
+
+j1
+high.9.conv.0.0.weight
+
+Ä
+@
+
+j1
+high.9.conv.1.0.weight
+
+Ä
+
+
+j/
+high.9.conv.2.weight
+
+@
+Ä
+
+j2
+high.10.conv.0.0.weight
+
+Ä
+@
+
+j2
+high.10.conv.1.0.weight
+
+Ä
+
+
+j0
+high.10.conv.2.weight
+
+@
+Ä
+
+j2
+high.11.conv.0.0.weight
+
+Ä
+@
+
+j2
+high.11.conv.1.0.weight
+
+Ä
+
+
+j0
+high.11.conv.2.weight
+
+`
+Ä
+
+j2
+high.12.conv.0.0.weight
+
+¿
+`
+
+j2
+high.12.conv.1.0.weight
+
+¿
+
+
+j0
+high.12.conv.2.weight
+
+`
+¿
+
+j2
+high.13.conv.0.0.weight
+
+¿
+`
+
+j2
+high.13.conv.1.0.weight
+
+¿
+
+
+j0
+high.13.conv.2.weight
+
+`
+¿
+
+j(
+fuse.0.weight
+
+`
+Ä
+
+j
+fuse.0.bias
+
+
+`j'
+fuse.3.weight
+
+@
+`
+
+j
+fuse.3.bias
+
+
+@j‘
+
+out.weight
+
+
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"1
+!pkg.torch.onnx.original_node_namep_out_weightjƒ
+out.bias
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"/
+!pkg.torch.onnx.original_node_name
+p_out_biasj≈
+mean
+
+
+
+
+"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"+
+!pkg.torch.onnx.original_node_nameb_meanj√
+std
+
+
+
+
+"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"*
+!pkg.torch.onnx.original_node_nameb_stdjK
+min_val_cast
+ "3
+$pkg.onnxscript.optimizer.folded_from['min_val']jK
+max_val_cast
+ "3
+$pkg.onnxscript.optimizer.folded_from['max_val']j!
+low.0.0.weight_bias
+
+
+ j(
+low.1.conv.0.0.weight_bias
+
+
+ j&
+low.1.conv.1.weight_bias
+
+
+j(
+low.2.conv.0.0.weight_bias
+
+
+`j(
+low.2.conv.1.0.weight_bias
+
+
+`j&
+low.2.conv.2.weight_bias
+
+
+j)
+low.3.conv.0.0.weight_bias
+	
+êj)
+low.3.conv.1.0.weight_bias
+	
+êj&
+low.3.conv.2.weight_bias
+
+
+j)
+low.4.conv.0.0.weight_bias
+	
+êj)
+low.4.conv.1.0.weight_bias
+	
+êj&
+low.4.conv.2.weight_bias
+
+
+ j)
+low.5.conv.0.0.weight_bias
+	
+¿j)
+low.5.conv.1.0.weight_bias
+	
+¿j&
+low.5.conv.2.weight_bias
+
+
+ j)
+low.6.conv.0.0.weight_bias
+	
+¿j)
+low.6.conv.1.0.weight_bias
+	
+¿j&
+low.6.conv.2.weight_bias
+
+
+ j*
+high.7.conv.0.0.weight_bias
+	
+¿j*
+high.7.conv.1.0.weight_bias
+	
+¿j'
+high.7.conv.2.weight_bias
+
+
+@j*
+high.8.conv.0.0.weight_bias
+	
+Äj*
+high.8.conv.1.0.weight_bias
+	
+Äj'
+high.8.conv.2.weight_bias
+
+
+@j*
+high.9.conv.0.0.weight_bias
+	
+Äj*
+high.9.conv.1.0.weight_bias
+	
+Äj'
+high.9.conv.2.weight_bias
+
+
+@j+
+high.10.conv.0.0.weight_bias
+	
+Äj+
+high.10.conv.1.0.weight_bias
+	
+Äj(
+high.10.conv.2.weight_bias
+
+
+@j+
+high.11.conv.0.0.weight_bias
+	
+Äj+
+high.11.conv.1.0.weight_bias
+	
+Äj(
+high.11.conv.2.weight_bias
+
+
+`j+
+high.12.conv.0.0.weight_bias
+	
+¿j+
+high.12.conv.1.0.weight_bias
+	
+¿j(
+high.12.conv.2.weight_bias
+
+
+`j+
+high.13.conv.0.0.weight_bias
+	
+¿j+
+high.13.conv.1.0.weight_bias
+	
+¿j(
+high.13.conv.2.weight_bias
+
+
+`j
+val_432
+
+
+j
+sub
+
+
+
+¿
+¿j
+div
+
+
+
+¿
+¿j#
+getitem
+
+
+ 
+†
+†j$
+hardtanh
+
+
+ 
+†
+†j%
+	getitem_3
+
+
+ 
+†
+†j&
+
+hardtanh_1
+
+
+ 
+†
+†j%
+	getitem_6
+
+
+
+†
+†j%
+	getitem_9
+
+
+`
+†
+†j&
+
+hardtanh_2
+
+
+`
+†
+†j$
+
+getitem_12
+
+
+`
+P
+Pj$
+
+hardtanh_3
+
+
+`
+P
+Pj$
+
+getitem_15
+
+
+
+P
+Pj%
+
+getitem_18
+
+
+ê
+P
+Pj%
+
+hardtanh_4
+
+
+ê
+P
+Pj%
+
+getitem_21
+
+
+ê
+P
+Pj%
+
+hardtanh_5
+
+
+ê
+P
+Pj$
+
+getitem_24
+
+
+
+P
+Pj
+add
+
+
+
+P
+Pj%
+
+getitem_27
+
+
+ê
+P
+Pj%
+
+hardtanh_6
+
+
+ê
+P
+Pj%
+
+getitem_30
+
+
+ê
+(
+(j%
+
+hardtanh_7
+
+
+ê
+(
+(j$
+
+getitem_33
+
+
+ 
+(
+(j%
+
+getitem_36
+
+
+¿
+(
+(j%
+
+hardtanh_8
+
+
+¿
+(
+(j%
+
+getitem_39
+
+
+¿
+(
+(j%
+
+hardtanh_9
+
+
+¿
+(
+(j$
+
+getitem_42
+
+
+ 
+(
+(j
+add_1
+
+
+ 
+(
+(j%
+
+getitem_45
+
+
+¿
+(
+(j&
+hardtanh_10
+
+
+¿
+(
+(j%
+
+getitem_48
+
+
+¿
+(
+(j&
+hardtanh_11
+
+
+¿
+(
+(j$
+
+getitem_51
+
+
+ 
+(
+(j
+add_2
+
+
+ 
+(
+(j%
+
+getitem_54
+
+
+¿
+(
+(j&
+hardtanh_12
+
+
+¿
+(
+(j%
+
+getitem_57
+
+
+¿
+
+j&
+hardtanh_13
+
+
+¿
+
+j$
+
+getitem_60
+
+
+@
+
+j%
+
+getitem_63
+
+
+Ä
+
+j&
+hardtanh_14
+
+
+Ä
+
+j%
+
+getitem_66
+
+
+Ä
+
+j&
+hardtanh_15
+
+
+Ä
+
+j$
+
+getitem_69
+
+
+@
+
+j
+add_3
+
+
+@
+
+j%
+
+getitem_72
+
+
+Ä
+
+j&
+hardtanh_16
+
+
+Ä
+
+j%
+
+getitem_75
+
+
+Ä
+
+j&
+hardtanh_17
+
+
+Ä
+
+j$
+
+getitem_78
+
+
+@
+
+j
+add_4
+
+
+@
+
+j%
+
+getitem_81
+
+
+Ä
+
+j&
+hardtanh_18
+
+
+Ä
+
+j%
+
+getitem_84
+
+
+Ä
+
+j&
+hardtanh_19
+
+
+Ä
+
+j$
+
+getitem_87
+
+
+@
+
+j
+add_5
+
+
+@
+
+j%
+
+getitem_90
+
+
+Ä
+
+j&
+hardtanh_20
+
+
+Ä
+
+j%
+
+getitem_93
+
+
+Ä
+
+j&
+hardtanh_21
+
+
+Ä
+
+j$
+
+getitem_96
+
+
+`
+
+j%
+
+getitem_99
+
+
+¿
+
+j&
+hardtanh_22
+
+
+¿
+
+j&
+getitem_102
+
+
+¿
+
+j&
+hardtanh_23
+
+
+¿
+
+j%
+getitem_105
+
+
+`
+
+j
+add_6
+
+
+`
+
+j&
+getitem_108
+
+
+¿
+
+j&
+hardtanh_24
+
+
+¿
+
+j&
+getitem_111
+
+
+¿
+
+j&
+hardtanh_25
+
+
+¿
+
+j%
+getitem_114
+
+
+`
+
+j
+add_7
+
+
+`
+
+j,
+upsample_nearest2d
+
+
+`
+(
+(j
+cat
+
+
+Ä
+(
+(j%
+getitem_117
+
+
+`
+(
+(j
+relu
+
+
+`
+(
+(j%
+getitem_120
+
+
+@
+(
+(j 
+relu_1
+
+
+@
+(
+(ÇÔö
+0pkg.torch.export.ExportedProgram.graph_signatureπö
+# inputs
+p_low_0_0_weight: PARAMETER target='low.0.0.weight'
+p_low_0_1_weight: PARAMETER target='low.0.1.weight'
+p_low_0_1_bias: PARAMETER target='low.0.1.bias'
+p_low_1_conv_0_0_weight: PARAMETER target='low.1.conv.0.0.weight'
+p_low_1_conv_0_1_weight: PARAMETER target='low.1.conv.0.1.weight'
+p_low_1_conv_0_1_bias: PARAMETER target='low.1.conv.0.1.bias'
+p_low_1_conv_1_weight: PARAMETER target='low.1.conv.1.weight'
+p_low_1_conv_2_weight: PARAMETER target='low.1.conv.2.weight'
+p_low_1_conv_2_bias: PARAMETER target='low.1.conv.2.bias'
+p_low_2_conv_0_0_weight: PARAMETER target='low.2.conv.0.0.weight'
+p_low_2_conv_0_1_weight: PARAMETER target='low.2.conv.0.1.weight'
+p_low_2_conv_0_1_bias: PARAMETER target='low.2.conv.0.1.bias'
+p_low_2_conv_1_0_weight: PARAMETER target='low.2.conv.1.0.weight'
+p_low_2_conv_1_1_weight: PARAMETER target='low.2.conv.1.1.weight'
+p_low_2_conv_1_1_bias: PARAMETER target='low.2.conv.1.1.bias'
+p_low_2_conv_2_weight: PARAMETER target='low.2.conv.2.weight'
+p_low_2_conv_3_weight: PARAMETER target='low.2.conv.3.weight'
+p_low_2_conv_3_bias: PARAMETER target='low.2.conv.3.bias'
+p_low_3_conv_0_0_weight: PARAMETER target='low.3.conv.0.0.weight'
+p_low_3_conv_0_1_weight: PARAMETER target='low.3.conv.0.1.weight'
+p_low_3_conv_0_1_bias: PARAMETER target='low.3.conv.0.1.bias'
+p_low_3_conv_1_0_weight: PARAMETER target='low.3.conv.1.0.weight'
+p_low_3_conv_1_1_weight: PARAMETER target='low.3.conv.1.1.weight'
+p_low_3_conv_1_1_bias: PARAMETER target='low.3.conv.1.1.bias'
+p_low_3_conv_2_weight: PARAMETER target='low.3.conv.2.weight'
+p_low_3_conv_3_weight: PARAMETER target='low.3.conv.3.weight'
+p_low_3_conv_3_bias: PARAMETER target='low.3.conv.3.bias'
+p_low_4_conv_0_0_weight: PARAMETER target='low.4.conv.0.0.weight'
+p_low_4_conv_0_1_weight: PARAMETER target='low.4.conv.0.1.weight'
+p_low_4_conv_0_1_bias: PARAMETER target='low.4.conv.0.1.bias'
+p_low_4_conv_1_0_weight: PARAMETER target='low.4.conv.1.0.weight'
+p_low_4_conv_1_1_weight: PARAMETER target='low.4.conv.1.1.weight'
+p_low_4_conv_1_1_bias: PARAMETER target='low.4.conv.1.1.bias'
+p_low_4_conv_2_weight: PARAMETER target='low.4.conv.2.weight'
+p_low_4_conv_3_weight: PARAMETER target='low.4.conv.3.weight'
+p_low_4_conv_3_bias: PARAMETER target='low.4.conv.3.bias'
+p_low_5_conv_0_0_weight: PARAMETER target='low.5.conv.0.0.weight'
+p_low_5_conv_0_1_weight: PARAMETER target='low.5.conv.0.1.weight'
+p_low_5_conv_0_1_bias: PARAMETER target='low.5.conv.0.1.bias'
+p_low_5_conv_1_0_weight: PARAMETER target='low.5.conv.1.0.weight'
+p_low_5_conv_1_1_weight: PARAMETER target='low.5.conv.1.1.weight'
+p_low_5_conv_1_1_bias: PARAMETER target='low.5.conv.1.1.bias'
+p_low_5_conv_2_weight: PARAMETER target='low.5.conv.2.weight'
+p_low_5_conv_3_weight: PARAMETER target='low.5.conv.3.weight'
+p_low_5_conv_3_bias: PARAMETER target='low.5.conv.3.bias'
+p_low_6_conv_0_0_weight: PARAMETER target='low.6.conv.0.0.weight'
+p_low_6_conv_0_1_weight: PARAMETER target='low.6.conv.0.1.weight'
+p_low_6_conv_0_1_bias: PARAMETER target='low.6.conv.0.1.bias'
+p_low_6_conv_1_0_weight: PARAMETER target='low.6.conv.1.0.weight'
+p_low_6_conv_1_1_weight: PARAMETER target='low.6.conv.1.1.weight'
+p_low_6_conv_1_1_bias: PARAMETER target='low.6.conv.1.1.bias'
+p_low_6_conv_2_weight: PARAMETER target='low.6.conv.2.weight'
+p_low_6_conv_3_weight: PARAMETER target='low.6.conv.3.weight'
+p_low_6_conv_3_bias: PARAMETER target='low.6.conv.3.bias'
+p_high_7_conv_0_0_weight: PARAMETER target='high.7.conv.0.0.weight'
+p_high_7_conv_0_1_weight: PARAMETER target='high.7.conv.0.1.weight'
+p_high_7_conv_0_1_bias: PARAMETER target='high.7.conv.0.1.bias'
+p_high_7_conv_1_0_weight: PARAMETER target='high.7.conv.1.0.weight'
+p_high_7_conv_1_1_weight: PARAMETER target='high.7.conv.1.1.weight'
+p_high_7_conv_1_1_bias: PARAMETER target='high.7.conv.1.1.bias'
+p_high_7_conv_2_weight: PARAMETER target='high.7.conv.2.weight'
+p_high_7_conv_3_weight: PARAMETER target='high.7.conv.3.weight'
+p_high_7_conv_3_bias: PARAMETER target='high.7.conv.3.bias'
+p_high_8_conv_0_0_weight: PARAMETER target='high.8.conv.0.0.weight'
+p_high_8_conv_0_1_weight: PARAMETER target='high.8.conv.0.1.weight'
+p_high_8_conv_0_1_bias: PARAMETER target='high.8.conv.0.1.bias'
+p_high_8_conv_1_0_weight: PARAMETER target='high.8.conv.1.0.weight'
+p_high_8_conv_1_1_weight: PARAMETER target='high.8.conv.1.1.weight'
+p_high_8_conv_1_1_bias: PARAMETER target='high.8.conv.1.1.bias'
+p_high_8_conv_2_weight: PARAMETER target='high.8.conv.2.weight'
+p_high_8_conv_3_weight: PARAMETER target='high.8.conv.3.weight'
+p_high_8_conv_3_bias: PARAMETER target='high.8.conv.3.bias'
+p_high_9_conv_0_0_weight: PARAMETER target='high.9.conv.0.0.weight'
+p_high_9_conv_0_1_weight: PARAMETER target='high.9.conv.0.1.weight'
+p_high_9_conv_0_1_bias: PARAMETER target='high.9.conv.0.1.bias'
+p_high_9_conv_1_0_weight: PARAMETER target='high.9.conv.1.0.weight'
+p_high_9_conv_1_1_weight: PARAMETER target='high.9.conv.1.1.weight'
+p_high_9_conv_1_1_bias: PARAMETER target='high.9.conv.1.1.bias'
+p_high_9_conv_2_weight: PARAMETER target='high.9.conv.2.weight'
+p_high_9_conv_3_weight: PARAMETER target='high.9.conv.3.weight'
+p_high_9_conv_3_bias: PARAMETER target='high.9.conv.3.bias'
+p_high_10_conv_0_0_weight: PARAMETER target='high.10.conv.0.0.weight'
+p_high_10_conv_0_1_weight: PARAMETER target='high.10.conv.0.1.weight'
+p_high_10_conv_0_1_bias: PARAMETER target='high.10.conv.0.1.bias'
+p_high_10_conv_1_0_weight: PARAMETER target='high.10.conv.1.0.weight'
+p_high_10_conv_1_1_weight: PARAMETER target='high.10.conv.1.1.weight'
+p_high_10_conv_1_1_bias: PARAMETER target='high.10.conv.1.1.bias'
+p_high_10_conv_2_weight: PARAMETER target='high.10.conv.2.weight'
+p_high_10_conv_3_weight: PARAMETER target='high.10.conv.3.weight'
+p_high_10_conv_3_bias: PARAMETER target='high.10.conv.3.bias'
+p_high_11_conv_0_0_weight: PARAMETER target='high.11.conv.0.0.weight'
+p_high_11_conv_0_1_weight: PARAMETER target='high.11.conv.0.1.weight'
+p_high_11_conv_0_1_bias: PARAMETER target='high.11.conv.0.1.bias'
+p_high_11_conv_1_0_weight: PARAMETER target='high.11.conv.1.0.weight'
+p_high_11_conv_1_1_weight: PARAMETER target='high.11.conv.1.1.weight'
+p_high_11_conv_1_1_bias: PARAMETER target='high.11.conv.1.1.bias'
+p_high_11_conv_2_weight: PARAMETER target='high.11.conv.2.weight'
+p_high_11_conv_3_weight: PARAMETER target='high.11.conv.3.weight'
+p_high_11_conv_3_bias: PARAMETER target='high.11.conv.3.bias'
+p_high_12_conv_0_0_weight: PARAMETER target='high.12.conv.0.0.weight'
+p_high_12_conv_0_1_weight: PARAMETER target='high.12.conv.0.1.weight'
+p_high_12_conv_0_1_bias: PARAMETER target='high.12.conv.0.1.bias'
+p_high_12_conv_1_0_weight: PARAMETER target='high.12.conv.1.0.weight'
+p_high_12_conv_1_1_weight: PARAMETER target='high.12.conv.1.1.weight'
+p_high_12_conv_1_1_bias: PARAMETER target='high.12.conv.1.1.bias'
+p_high_12_conv_2_weight: PARAMETER target='high.12.conv.2.weight'
+p_high_12_conv_3_weight: PARAMETER target='high.12.conv.3.weight'
+p_high_12_conv_3_bias: PARAMETER target='high.12.conv.3.bias'
+p_high_13_conv_0_0_weight: PARAMETER target='high.13.conv.0.0.weight'
+p_high_13_conv_0_1_weight: PARAMETER target='high.13.conv.0.1.weight'
+p_high_13_conv_0_1_bias: PARAMETER target='high.13.conv.0.1.bias'
+p_high_13_conv_1_0_weight: PARAMETER target='high.13.conv.1.0.weight'
+p_high_13_conv_1_1_weight: PARAMETER target='high.13.conv.1.1.weight'
+p_high_13_conv_1_1_bias: PARAMETER target='high.13.conv.1.1.bias'
+p_high_13_conv_2_weight: PARAMETER target='high.13.conv.2.weight'
+p_high_13_conv_3_weight: PARAMETER target='high.13.conv.3.weight'
+p_high_13_conv_3_bias: PARAMETER target='high.13.conv.3.bias'
+p_fuse_0_weight: PARAMETER target='fuse.0.weight'
+p_fuse_0_bias: PARAMETER target='fuse.0.bias'
+p_fuse_1_weight: PARAMETER target='fuse.1.weight'
+p_fuse_1_bias: PARAMETER target='fuse.1.bias'
+p_fuse_3_weight: PARAMETER target='fuse.3.weight'
+p_fuse_3_bias: PARAMETER target='fuse.3.bias'
+p_fuse_4_weight: PARAMETER target='fuse.4.weight'
+p_fuse_4_bias: PARAMETER target='fuse.4.bias'
+p_out_weight: PARAMETER target='out.weight'
+p_out_bias: PARAMETER target='out.bias'
+b_mean: BUFFER target='mean' persistent=True
+b_std: BUFFER target='std' persistent=True
+b_low_0_1_running_mean: BUFFER target='low.0.1.running_mean' persistent=True
+b_low_0_1_running_var: BUFFER target='low.0.1.running_var' persistent=True
+b_low_0_1_num_batches_tracked: BUFFER target='low.0.1.num_batches_tracked' persistent=True
+b_low_1_conv_0_1_running_mean: BUFFER target='low.1.conv.0.1.running_mean' persistent=True
+b_low_1_conv_0_1_running_var: BUFFER target='low.1.conv.0.1.running_var' persistent=True
+b_low_1_conv_0_1_num_batches_tracked: BUFFER target='low.1.conv.0.1.num_batches_tracked' persistent=True
+b_low_1_conv_2_running_mean: BUFFER target='low.1.conv.2.running_mean' persistent=True
+b_low_1_conv_2_running_var: BUFFER target='low.1.conv.2.running_var' persistent=True
+b_low_1_conv_2_num_batches_tracked: BUFFER target='low.1.conv.2.num_batches_tracked' persistent=True
+b_low_2_conv_0_1_running_mean: BUFFER target='low.2.conv.0.1.running_mean' persistent=True
+b_low_2_conv_0_1_running_var: BUFFER target='low.2.conv.0.1.running_var' persistent=True
+b_low_2_conv_0_1_num_batches_tracked: BUFFER target='low.2.conv.0.1.num_batches_tracked' persistent=True
+b_low_2_conv_1_1_running_mean: BUFFER target='low.2.conv.1.1.running_mean' persistent=True
+b_low_2_conv_1_1_running_var: BUFFER target='low.2.conv.1.1.running_var' persistent=True
+b_low_2_conv_1_1_num_batches_tracked: BUFFER target='low.2.conv.1.1.num_batches_tracked' persistent=True
+b_low_2_conv_3_running_mean: BUFFER target='low.2.conv.3.running_mean' persistent=True
+b_low_2_conv_3_running_var: BUFFER target='low.2.conv.3.running_var' persistent=True
+b_low_2_conv_3_num_batches_tracked: BUFFER target='low.2.conv.3.num_batches_tracked' persistent=True
+b_low_3_conv_0_1_running_mean: BUFFER target='low.3.conv.0.1.running_mean' persistent=True
+b_low_3_conv_0_1_running_var: BUFFER target='low.3.conv.0.1.running_var' persistent=True
+b_low_3_conv_0_1_num_batches_tracked: BUFFER target='low.3.conv.0.1.num_batches_tracked' persistent=True
+b_low_3_conv_1_1_running_mean: BUFFER target='low.3.conv.1.1.running_mean' persistent=True
+b_low_3_conv_1_1_running_var: BUFFER target='low.3.conv.1.1.running_var' persistent=True
+b_low_3_conv_1_1_num_batches_tracked: BUFFER target='low.3.conv.1.1.num_batches_tracked' persistent=True
+b_low_3_conv_3_running_mean: BUFFER target='low.3.conv.3.running_mean' persistent=True
+b_low_3_conv_3_running_var: BUFFER target='low.3.conv.3.running_var' persistent=True
+b_low_3_conv_3_num_batches_tracked: BUFFER target='low.3.conv.3.num_batches_tracked' persistent=True
+b_low_4_conv_0_1_running_mean: BUFFER target='low.4.conv.0.1.running_mean' persistent=True
+b_low_4_conv_0_1_running_var: BUFFER target='low.4.conv.0.1.running_var' persistent=True
+b_low_4_conv_0_1_num_batches_tracked: BUFFER target='low.4.conv.0.1.num_batches_tracked' persistent=True
+b_low_4_conv_1_1_running_mean: BUFFER target='low.4.conv.1.1.running_mean' persistent=True
+b_low_4_conv_1_1_running_var: BUFFER target='low.4.conv.1.1.running_var' persistent=True
+b_low_4_conv_1_1_num_batches_tracked: BUFFER target='low.4.conv.1.1.num_batches_tracked' persistent=True
+b_low_4_conv_3_running_mean: BUFFER target='low.4.conv.3.running_mean' persistent=True
+b_low_4_conv_3_running_var: BUFFER target='low.4.conv.3.running_var' persistent=True
+b_low_4_conv_3_num_batches_tracked: BUFFER target='low.4.conv.3.num_batches_tracked' persistent=True
+b_low_5_conv_0_1_running_mean: BUFFER target='low.5.conv.0.1.running_mean' persistent=True
+b_low_5_conv_0_1_running_var: BUFFER target='low.5.conv.0.1.running_var' persistent=True
+b_low_5_conv_0_1_num_batches_tracked: BUFFER target='low.5.conv.0.1.num_batches_tracked' persistent=True
+b_low_5_conv_1_1_running_mean: BUFFER target='low.5.conv.1.1.running_mean' persistent=True
+b_low_5_conv_1_1_running_var: BUFFER target='low.5.conv.1.1.running_var' persistent=True
+b_low_5_conv_1_1_num_batches_tracked: BUFFER target='low.5.conv.1.1.num_batches_tracked' persistent=True
+b_low_5_conv_3_running_mean: BUFFER target='low.5.conv.3.running_mean' persistent=True
+b_low_5_conv_3_running_var: BUFFER target='low.5.conv.3.running_var' persistent=True
+b_low_5_conv_3_num_batches_tracked: BUFFER target='low.5.conv.3.num_batches_tracked' persistent=True
+b_low_6_conv_0_1_running_mean: BUFFER target='low.6.conv.0.1.running_mean' persistent=True
+b_low_6_conv_0_1_running_var: BUFFER target='low.6.conv.0.1.running_var' persistent=True
+b_low_6_conv_0_1_num_batches_tracked: BUFFER target='low.6.conv.0.1.num_batches_tracked' persistent=True
+b_low_6_conv_1_1_running_mean: BUFFER target='low.6.conv.1.1.running_mean' persistent=True
+b_low_6_conv_1_1_running_var: BUFFER target='low.6.conv.1.1.running_var' persistent=True
+b_low_6_conv_1_1_num_batches_tracked: BUFFER target='low.6.conv.1.1.num_batches_tracked' persistent=True
+b_low_6_conv_3_running_mean: BUFFER target='low.6.conv.3.running_mean' persistent=True
+b_low_6_conv_3_running_var: BUFFER target='low.6.conv.3.running_var' persistent=True
+b_low_6_conv_3_num_batches_tracked: BUFFER target='low.6.conv.3.num_batches_tracked' persistent=True
+b_high_7_conv_0_1_running_mean: BUFFER target='high.7.conv.0.1.running_mean' persistent=True
+b_high_7_conv_0_1_running_var: BUFFER target='high.7.conv.0.1.running_var' persistent=True
+b_high_7_conv_0_1_num_batches_tracked: BUFFER target='high.7.conv.0.1.num_batches_tracked' persistent=True
+b_high_7_conv_1_1_running_mean: BUFFER target='high.7.conv.1.1.running_mean' persistent=True
+b_high_7_conv_1_1_running_var: BUFFER target='high.7.conv.1.1.running_var' persistent=True
+b_high_7_conv_1_1_num_batches_tracked: BUFFER target='high.7.conv.1.1.num_batches_tracked' persistent=True
+b_high_7_conv_3_running_mean: BUFFER target='high.7.conv.3.running_mean' persistent=True
+b_high_7_conv_3_running_var: BUFFER target='high.7.conv.3.running_var' persistent=True
+b_high_7_conv_3_num_batches_tracked: BUFFER target='high.7.conv.3.num_batches_tracked' persistent=True
+b_high_8_conv_0_1_running_mean: BUFFER target='high.8.conv.0.1.running_mean' persistent=True
+b_high_8_conv_0_1_running_var: BUFFER target='high.8.conv.0.1.running_var' persistent=True
+b_high_8_conv_0_1_num_batches_tracked: BUFFER target='high.8.conv.0.1.num_batches_tracked' persistent=True
+b_high_8_conv_1_1_running_mean: BUFFER target='high.8.conv.1.1.running_mean' persistent=True
+b_high_8_conv_1_1_running_var: BUFFER target='high.8.conv.1.1.running_var' persistent=True
+b_high_8_conv_1_1_num_batches_tracked: BUFFER target='high.8.conv.1.1.num_batches_tracked' persistent=True
+b_high_8_conv_3_running_mean: BUFFER target='high.8.conv.3.running_mean' persistent=True
+b_high_8_conv_3_running_var: BUFFER target='high.8.conv.3.running_var' persistent=True
+b_high_8_conv_3_num_batches_tracked: BUFFER target='high.8.conv.3.num_batches_tracked' persistent=True
+b_high_9_conv_0_1_running_mean: BUFFER target='high.9.conv.0.1.running_mean' persistent=True
+b_high_9_conv_0_1_running_var: BUFFER target='high.9.conv.0.1.running_var' persistent=True
+b_high_9_conv_0_1_num_batches_tracked: BUFFER target='high.9.conv.0.1.num_batches_tracked' persistent=True
+b_high_9_conv_1_1_running_mean: BUFFER target='high.9.conv.1.1.running_mean' persistent=True
+b_high_9_conv_1_1_running_var: BUFFER target='high.9.conv.1.1.running_var' persistent=True
+b_high_9_conv_1_1_num_batches_tracked: BUFFER target='high.9.conv.1.1.num_batches_tracked' persistent=True
+b_high_9_conv_3_running_mean: BUFFER target='high.9.conv.3.running_mean' persistent=True
+b_high_9_conv_3_running_var: BUFFER target='high.9.conv.3.running_var' persistent=True
+b_high_9_conv_3_num_batches_tracked: BUFFER target='high.9.conv.3.num_batches_tracked' persistent=True
+b_high_10_conv_0_1_running_mean: BUFFER target='high.10.conv.0.1.running_mean' persistent=True
+b_high_10_conv_0_1_running_var: BUFFER target='high.10.conv.0.1.running_var' persistent=True
+b_high_10_conv_0_1_num_batches_tracked: BUFFER target='high.10.conv.0.1.num_batches_tracked' persistent=True
+b_high_10_conv_1_1_running_mean: BUFFER target='high.10.conv.1.1.running_mean' persistent=True
+b_high_10_conv_1_1_running_var: BUFFER target='high.10.conv.1.1.running_var' persistent=True
+b_high_10_conv_1_1_num_batches_tracked: BUFFER target='high.10.conv.1.1.num_batches_tracked' persistent=True
+b_high_10_conv_3_running_mean: BUFFER target='high.10.conv.3.running_mean' persistent=True
+b_high_10_conv_3_running_var: BUFFER target='high.10.conv.3.running_var' persistent=True
+b_high_10_conv_3_num_batches_tracked: BUFFER target='high.10.conv.3.num_batches_tracked' persistent=True
+b_high_11_conv_0_1_running_mean: BUFFER target='high.11.conv.0.1.running_mean' persistent=True
+b_high_11_conv_0_1_running_var: BUFFER target='high.11.conv.0.1.running_var' persistent=True
+b_high_11_conv_0_1_num_batches_tracked: BUFFER target='high.11.conv.0.1.num_batches_tracked' persistent=True
+b_high_11_conv_1_1_running_mean: BUFFER target='high.11.conv.1.1.running_mean' persistent=True
+b_high_11_conv_1_1_running_var: BUFFER target='high.11.conv.1.1.running_var' persistent=True
+b_high_11_conv_1_1_num_batches_tracked: BUFFER target='high.11.conv.1.1.num_batches_tracked' persistent=True
+b_high_11_conv_3_running_mean: BUFFER target='high.11.conv.3.running_mean' persistent=True
+b_high_11_conv_3_running_var: BUFFER target='high.11.conv.3.running_var' persistent=True
+b_high_11_conv_3_num_batches_tracked: BUFFER target='high.11.conv.3.num_batches_tracked' persistent=True
+b_high_12_conv_0_1_running_mean: BUFFER target='high.12.conv.0.1.running_mean' persistent=True
+b_high_12_conv_0_1_running_var: BUFFER target='high.12.conv.0.1.running_var' persistent=True
+b_high_12_conv_0_1_num_batches_tracked: BUFFER target='high.12.conv.0.1.num_batches_tracked' persistent=True
+b_high_12_conv_1_1_running_mean: BUFFER target='high.12.conv.1.1.running_mean' persistent=True
+b_high_12_conv_1_1_running_var: BUFFER target='high.12.conv.1.1.running_var' persistent=True
+b_high_12_conv_1_1_num_batches_tracked: BUFFER target='high.12.conv.1.1.num_batches_tracked' persistent=True
+b_high_12_conv_3_running_mean: BUFFER target='high.12.conv.3.running_mean' persistent=True
+b_high_12_conv_3_running_var: BUFFER target='high.12.conv.3.running_var' persistent=True
+b_high_12_conv_3_num_batches_tracked: BUFFER target='high.12.conv.3.num_batches_tracked' persistent=True
+b_high_13_conv_0_1_running_mean: BUFFER target='high.13.conv.0.1.running_mean' persistent=True
+b_high_13_conv_0_1_running_var: BUFFER target='high.13.conv.0.1.running_var' persistent=True
+b_high_13_conv_0_1_num_batches_tracked: BUFFER target='high.13.conv.0.1.num_batches_tracked' persistent=True
+b_high_13_conv_1_1_running_mean: BUFFER target='high.13.conv.1.1.running_mean' persistent=True
+b_high_13_conv_1_1_running_var: BUFFER target='high.13.conv.1.1.running_var' persistent=True
+b_high_13_conv_1_1_num_batches_tracked: BUFFER target='high.13.conv.1.1.num_batches_tracked' persistent=True
+b_high_13_conv_3_running_mean: BUFFER target='high.13.conv.3.running_mean' persistent=True
+b_high_13_conv_3_running_var: BUFFER target='high.13.conv.3.running_var' persistent=True
+b_high_13_conv_3_num_batches_tracked: BUFFER target='high.13.conv.3.num_batches_tracked' persistent=True
+b_fuse_1_running_mean: BUFFER target='fuse.1.running_mean' persistent=True
+b_fuse_1_running_var: BUFFER target='fuse.1.running_var' persistent=True
+b_fuse_1_num_batches_tracked: BUFFER target='fuse.1.num_batches_tracked' persistent=True
+b_fuse_4_running_mean: BUFFER target='fuse.4.running_mean' persistent=True
+b_fuse_4_running_var: BUFFER target='fuse.4.running_var' persistent=True
+b_fuse_4_num_batches_tracked: BUFFER target='fuse.4.num_batches_tracked' persistent=True
+x: USER_INPUT
+
+# outputs
+conv2d_41: USER_OUTPUT
+Ç8
+2pkg.torch.export.ExportedProgram.range_constraints{}B
+ 
